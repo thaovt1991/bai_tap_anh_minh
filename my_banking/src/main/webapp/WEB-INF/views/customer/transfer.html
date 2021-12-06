@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Transfer money Information</title>
@@ -58,7 +58,7 @@
             <div class="col-md-3">
                 <label class="form-label">Transfer Amount(VND)</label>
                 <input type="number" class="form-control" id="transferAmount" name="transferAmount"
-                       th:field="*{transferAmount}" onkeydown="onChange()">
+                       th:field="*{transferAmount}" th:onkeyup="onChange()">
             </div>
             <div class="col-md-3">
                 <label class="form-label">Fees(%)</label>
@@ -81,12 +81,12 @@
     </form>
     <div class="row">
         <footer>
-        <th:block th:if="${success}">
-            <div class="bg-success p-2 text-white"><span th:text="${success}"></span></div>
-        </th:block>
-        <th:block th:if="${error}">
-            <div class="bg-danger bg-gradient p-2 text-white"><span th:text="${error}"></span></div>
-        </th:block>
+            <th:block th:if="${success}">
+                <div class="bg-success p-2 text-white"><span th:text="${success}"></span></div>
+            </th:block>
+            <th:block th:if="${error}">
+                <div class="bg-danger bg-gradient p-2 text-white"><span th:text="${error}"></span></div>
+            </th:block>
         </footer>
     </div>
 </div>
@@ -95,10 +95,9 @@
 </body>
 </html>
 <script>
-    function onChange(){
+    function onChange() {
         let transferAmount = document.getElementById("transferAmount").value
         let fees = document.getElementById("fees").value
-        let totalAmount = transferAmount * fees / 100 ;
-        document.getElementById("totalAmount").value = totalAmount ;
+        document.getElementById("totalAmount").value = transferAmount*fees /100
     }
 </script>

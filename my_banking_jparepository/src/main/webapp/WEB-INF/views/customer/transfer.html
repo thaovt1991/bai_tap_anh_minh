@@ -43,16 +43,6 @@
             </div>
             <div class="col-md-3">
                 <label class="form-label">Recipient ID</label>
-
-<!--                <select name="idRecipient" id="idRecipient" class="form-select" aria-label="Default select example">-->
-<!--                    <option value="0" selected>Select Recipient ID</option>-->
-<!--                    <th:block th:each="item : ${recipients}">-->
-<!--                        <option th:value="${item.id}">-->
-<!--                            (<span th:text="${item.id}"></span>)<span th:text="${item.fullName}"></span>-->
-<!--                        </option>-->
-<!--                    </th:block>-->
-<!--                </select>-->
-
                 <select name="recipient" id="recipient" class="form-select">
                     <option th:value="${sender.id}" selected>Select Recipient ID</option>
                     <option th:each="item : ${recipients}" th:value="${item.id}" th:text="'(' + ${item.id} + ') ' + ${item.fullName}"></option>
@@ -62,7 +52,7 @@
             <div class="col-md-3">
                 <label class="form-label">Transfer Amount(VND)</label>
                 <input type="number" class="form-control" id="transferAmount" name="transferAmount"
-                       th:field="*{transferAmount}" onkeydown="onChange()">
+                       th:field="*{transferAmount}" onkeyup="onChange()">
             </div>
             <div class="col-md-3">
                 <label class="form-label">Fees(%)</label>
@@ -71,7 +61,7 @@
             </div>
             <div class="col-md-3">
                 <label class="form-label">Fees amount(VND)</label>
-                <input type="text" class="form-control" id="feesAmount" name="feesAmount"
+                <input type="number" class="form-control" id="feesAmount" name="feesAmount"
                        value="0" th:field="*{feesAmount}" readonly>
             </div>
              <input type="hidden" th:field="*{transactionAmount}" >
@@ -108,7 +98,6 @@
     function onChange(){
         let transferAmount = document.getElementById("transferAmount").value
         let fees = document.getElementById("fees").value
-        let totalAmount = transferAmount * fees / 100 ;
-        document.getElementById("feesAmount").value = totalAmount ;
+        document.getElementById("feesAmount").value = transferAmount * fees / 100
     }
 </script>

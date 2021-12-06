@@ -11,6 +11,8 @@ import java.util.List;
 public interface ICustomerService extends IGeneralService<Customer> {
     Page<Customer> findAll(Pageable pageable);
 
+    Page<Customer> findAllNoDelete(Pageable pageable);
+
     List<Customer> findAllNotId(Long id) ;
 
     Iterable<Customer> findAllByIdIsNot(Long id);

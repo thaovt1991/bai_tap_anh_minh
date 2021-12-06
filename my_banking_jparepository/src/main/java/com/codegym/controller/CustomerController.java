@@ -64,7 +64,7 @@ public class CustomerController {
 //    }
     @GetMapping("/customers")
     public ModelAndView listCustomers(@PageableDefault(size = 10, sort = "id", direction = Sort.Direction.DESC) Pageable pageable) {
-        Page<Customer> customers = customerService.findAll(pageable);
+        Page<Customer> customers = customerService.findAllNoDelete(pageable);
         ModelAndView modelAndView = new ModelAndView("/customer/list");
         modelAndView.addObject("customers", customers);
         return modelAndView;

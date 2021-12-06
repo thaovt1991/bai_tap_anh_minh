@@ -37,9 +37,15 @@ public class CustomerService implements ICustomerService {
         customer.setDelete(true);
         save(customer);
     }
+
     @Override
     public Page<Customer> findAll(Pageable pageable) {
         return customerRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Customer> findAllNoDelete(Pageable pageable) {
+        return customerRepository.findAllNoDelete(pageable);
     }
 
     @Override
